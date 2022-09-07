@@ -44,3 +44,16 @@ resource "aws_s3_bucket_website_configuration" "terramino" {
     key = "error.html"
   }
 }
+
+resource "aws_vpc" "prod_vpc" {
+  cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "server1a" {
+  vpc_id = aws_vpc.prod_vpc.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name "Server 1a"
+  }
+}
