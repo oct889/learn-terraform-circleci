@@ -47,6 +47,10 @@ resource "aws_s3_bucket_website_configuration" "terramino" {
 
 resource "aws_vpc" "prod_vpc" {
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    "Name" = "Terra VPC"
+  }
 }
 
 resource "aws_subnet" "server1a" {
@@ -54,6 +58,6 @@ resource "aws_subnet" "server1a" {
   cidr_block = "10.0.1.0/24"
 
   tags = {
-    Name "Server 1a"
+    Name = "Server 1a"
   }
 }
