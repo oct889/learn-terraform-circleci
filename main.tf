@@ -59,7 +59,7 @@ resource "aws_instance" "web" {
   security_groups = [ "allow_all" ]
 
   tags = {
-    Name = "HelloWorld"ˀ
+    Name = "HelloWorld"
   }
 }
 
