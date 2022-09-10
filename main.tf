@@ -56,9 +56,10 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
   key_name = "deployer-key"
+  security_groups = [ "allow_all" ]
 
   tags = {
-    Name = "HelloWorld"
+    Name = "HelloWorld"ˀ
   }
 }
 
