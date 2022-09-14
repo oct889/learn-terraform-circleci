@@ -56,7 +56,7 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
   key_name = "deployer-key"
-  subnet_id = "public1a"
+  subnet_id = "${aws_subnet.public1a.id}"
   #vpc_security_group_ids = [aws_security_group.allow_all.id]
 
   tags = {
