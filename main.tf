@@ -30,6 +30,7 @@ resource "aws_subnet" "server1a" {
 resource "aws_subnet" "public1a" {
   vpc_id = aws_vpc.prod_vpc.id
   cidr_block = "10.0.20.0/24"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Public 1a"
