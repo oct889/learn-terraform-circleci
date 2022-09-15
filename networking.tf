@@ -43,6 +43,23 @@ resource "aws_subnet" "server1a" {
   }
 }
 
+resource "aws_eip" "nat_eip" {
+  vpc      = true
+}
+
+resource "aws_nat_gateway" "terra_nat_gateway" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.server1a
+
+  tags = {
+    Name = "gw NAT"
+  }
+
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  # on the Internet Gateway for the VPC.
+  depends_on = [aws_internet_gateway.terra_igw]
+}
+
 resource "aws_route_table_association" "server1a_rt_assoc" {
   subnet_id = aws_subnet.server1a.id
   route_table_id = aws_route_table.server1a_rt.id
