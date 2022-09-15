@@ -37,6 +37,28 @@ resource "aws_subnet" "public1a" {
   }
 }
 
+resource "aws_route_table_association" "public1a_rt_assoc" {
+  subnet_id = aws_subnet.public1a.id
+  route_table_id = aws_route_table.public1a_rt.id
+}
+
+resource "aws_route_table" "public1a_rt" {
+  vpc_id = aws_vpc.prod_vpc.id
+
+  route {
+    cidr_block = "10.0.20.0/24"
+  }
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.terra_igw.id
+  }
+
+  tags = {
+    Name = "Public 1a Route Table"
+  }
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
