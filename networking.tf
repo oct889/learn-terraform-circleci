@@ -49,7 +49,7 @@ resource "aws_eip" "nat_eip" {
 
 resource "aws_nat_gateway" "terra_nat_gateway" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.server1a
+  subnet_id     = aws_subnet.server1a.id
 
   tags = {
     Name = "gw NAT"
