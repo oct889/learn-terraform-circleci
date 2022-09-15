@@ -46,10 +46,6 @@ resource "aws_route_table" "public1a_rt" {
   vpc_id = aws_vpc.prod_vpc.id
 
   route {
-    cidr_block = "10.0.20.0/24"
-  }
-
-  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.terra_igw.id
   }
