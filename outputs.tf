@@ -3,7 +3,7 @@ output "bastion_private_ips" {
 }
 
 output "bastion_public_ips" {
-  value = aws_instance.web.public_ip
+  value = aws_instance.bastion_host.public_ip
 }
 
 output "server_private_ips" {
