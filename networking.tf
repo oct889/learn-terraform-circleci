@@ -1,3 +1,11 @@
+resource "aws_vpc" "prod_vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    "Name" = "Terra VPC"
+  }
+}
+
 resource "aws_internet_gateway" "terra_igw" {
   vpc_id = aws_vpc.prod_vpc.id
 
