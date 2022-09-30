@@ -52,7 +52,7 @@ resource "aws_subnet" "server1a" {
   }
 }
 
-resource "aws_subnet" "server1a" {
+resource "aws_subnet" "server1b" {
   vpc_id = aws_vpc.prod_vpc.id
   cidr_block = "10.0.11.0/24"
   availability_zone = "us-east-1b"
@@ -105,7 +105,7 @@ resource "aws_directory_service_directory" "terra_ad" {
 
   vpc_settings {
     vpc_id     = aws_vpc.prod_vpc.id
-    subnet_ids = [aws_subnet.server1a.id, aws_subnet.public1a.id]
+    subnet_ids = [aws_subnet.server1a.id, aws_subnet.server1b.id]
   }
 
   tags = {
