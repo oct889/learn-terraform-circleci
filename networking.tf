@@ -45,9 +45,20 @@ resource "aws_route_table" "public1a_rt" {
 resource "aws_subnet" "server1a" {
   vpc_id = aws_vpc.prod_vpc.id
   cidr_block = "10.0.10.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "Server 1a"
+  }
+}
+
+resource "aws_subnet" "server1a" {
+  vpc_id = aws_vpc.prod_vpc.id
+  cidr_block = "10.0.11.0/24"
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "Server 1b"
   }
 }
 
