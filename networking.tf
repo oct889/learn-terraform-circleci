@@ -94,7 +94,7 @@ resource "aws_directory_service_directory" "terra_ad" {
 
   vpc_settings {
     vpc_id     = aws_vpc.prod_vpc.id
-    subnet_ids = [aws_subnet.server1a.id]
+    subnet_ids = [aws_subnet.server1a.id, aws_subnet.public1a.id]
   }
 
   tags = {
