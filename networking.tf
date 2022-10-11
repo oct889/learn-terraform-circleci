@@ -1,3 +1,11 @@
+resource "aws_vpc" "prod_vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    "Name" = "Terra VPC"
+  }
+}
+
 resource "aws_internet_gateway" "terra_igw" {
   vpc_id = aws_vpc.prod_vpc.id
 
@@ -37,9 +45,20 @@ resource "aws_route_table" "public1a_rt" {
 resource "aws_subnet" "server1a" {
   vpc_id = aws_vpc.prod_vpc.id
   cidr_block = "10.0.10.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "Server 1a"
+  }
+}
+
+resource "aws_subnet" "server1b" {
+  vpc_id = aws_vpc.prod_vpc.id
+  cidr_block = "10.0.11.0/24"
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "Server 1b"
   }
 }
 
@@ -75,5 +94,21 @@ resource "aws_route_table" "server1a_rt" {
 
   tags = {
     Name = "Server 1a Route Table"
+  }
+}
+
+resource "aws_directory_service_directory" "terra_ad" {
+  name     = "corp.notexample.com"
+  password = "SuperSecretPassw0rd"
+  edition  = "Standard"
+  type     = "MicrosoftAD"
+
+  vpc_settings {
+    vpc_id     = aws_vpc.prod_vpc.id
+    subnet_ids = [aws_subnet.server1a.id, aws_subnet.server1b.id]
+  }
+
+  tags = {
+    Project = "foo"
   }
 }
