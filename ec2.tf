@@ -16,6 +16,20 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_ami" "windows" {
+     most_recent = true     
+ filter {
+       name   = "name"
+       values = ["Windows_Server-2019-English-Full-Base-*"]  
+  }     
+ filter {
+       name   = "virtualization-type"
+       values = ["hvm"]  
+  }   
+
+ owners = ["801119661308"] # Canonical
+}
+
 resource "aws_instance" "bastion_host" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
@@ -37,6 +51,18 @@ resource "aws_instance" "private_host" {
 
   tags = {
     Name = var.instance_name
+  }
+}
+
+resource "aws_instance" "private_windows" {
+  ami           = data.aws_ami.windows.id
+  instance_type = "t2.micro"
+  key_name = "deployer-key"
+  subnet_id = "${aws_subnet.server1a.id}"
+  vpc_security_group_ids = [aws_security_group.allow_all.id]
+
+  tags = {
+    Name = "Private Windows DC"
   }
 }
 
