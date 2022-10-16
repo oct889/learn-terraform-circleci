@@ -80,5 +80,5 @@ resource "aws_instance" "public_windows_bastion_host" {
 
 resource "aws_key_pair" "deployer" {
   key_name = "deployer-key"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHpVbdd3Mbzz5Uf9hwQaERDPw1bkCicJ5RKsrsE43qBG contact@nicholaswinter.com"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMFcTdRrzL+XOpQD7bpAhE/+JZsPp7ewqufKAK05rHckTQN1iGX56ycIU4UXt4XqfKsTYSZH7yGEIdtb2TBC606HQo+UwlbcZF2dt5Wt+ENimtwQGvQPfddcR1LXPRf/5zw/X5phiSp49IUNJEP4ejAI/ZFziubt4Fbz4ipdi3W/RtneAQcXmG1OEhKKZD7w98sdOkKXZTQvVdO8kPL0j9Ud4upuQ6xGtmBy5VK4+DJg5TjearZ1ZhF9aVQuo+7VrFPeKgRKcpkJRysNlKKyZhWFwakLRmOpT111eABCcqhkUDsfy+GmH4zX0AKH84po9yDvwJVxZWUNN+fANlQW2TJN3xAknnM8XODmBUP8H8jf8shhla2jSEHG2/l1Hp0bwM52A79q5mSi8Bzynwn3hagFoYsUtfrQjGF4gkMfWCRYZzXIb2/r4xw5nq12rIcjXTX8S6422iCedlKYBqtIWblAJ+d3O+HL4TwTFxkKPo8mJOT2v9Zq0iwhcE3T7Cu+E= nicholaswinter@Nicks-FatBook-Pro.local"
 }
