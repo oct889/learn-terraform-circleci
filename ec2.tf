@@ -16,19 +16,19 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-data "aws_ami" "windows" {
-     most_recent = true     
- filter {
-       name   = "name"
-       values = ["Windows_Server-2019-English-Full-Base-*"]  
-  }     
- filter {
-       name   = "virtualization-type"
-       values = ["hvm"]  
-  }   
+# data "aws_ami" "windows" {
+#      most_recent = true     
+#  filter {
+#        name   = "name"
+#        values = ["Windows_Server-2019-English-Full-Base-*"]  
+#   }     
+#  filter {
+#        name   = "virtualization-type"
+#        values = ["hvm"]  
+#   }   
 
- owners = ["801119661308"] # Canonical
-}
+#  owners = ["801119661308"] # Canonical
+# }
 
 resource "aws_instance" "bastion_host" {
   ami           = data.aws_ami.ubuntu.id
@@ -55,7 +55,7 @@ resource "aws_instance" "private_host" {
 }
 
 resource "aws_instance" "private_windows" {
-  ami           = data.aws_ami.windows.id
+  ami           = "ami-09893189de3a034b4"
   instance_type = "t2.micro"
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.server1a.id}"
@@ -67,7 +67,7 @@ resource "aws_instance" "private_windows" {
 }
 
 resource "aws_instance" "public_windows_bastion_host" {
-  ami           = data.aws_ami.windows.id
+  ami           = "ami-09893189de3a034b4"
   instance_type = "t2.micro"
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.public1a.id}"
