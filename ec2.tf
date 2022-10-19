@@ -72,6 +72,7 @@ resource "aws_instance" "public_windows_bastion_host" {
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.public1a.id}"
   vpc_security_group_ids = [aws_security_group.allow_all.id]
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.id}"
 
   tags = {
     Name = "Public Windows Bastion Host"
