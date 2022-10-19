@@ -44,3 +44,9 @@ resource "aws_iam_policy_attachment" "test_attach2" {
   roles      = [aws_iam_role.test_role.id]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
 }
+
+resource "aws_iam_policy_attachment" "test_attach3" {
+  name       = "test-attachment"
+  roles      = [aws_iam_role.test_role.id]
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonSSMDirectoryServiceAccess"
+}

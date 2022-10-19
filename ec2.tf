@@ -36,6 +36,7 @@ resource "aws_instance" "bastion_host" {
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.public1a.id}"
   vpc_security_group_ids = [aws_security_group.allow_all.id]
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.id}"
 
   tags = {
     Name = var.instance_name
@@ -48,6 +49,7 @@ resource "aws_instance" "private_host" {
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.server1a.id}"
   vpc_security_group_ids = [aws_security_group.allow_all.id]
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.id}"
 
   tags = {
     Name = var.instance_name
@@ -60,6 +62,7 @@ resource "aws_instance" "private_windows" {
   key_name = "deployer-key"
   subnet_id = "${aws_subnet.server1a.id}"
   vpc_security_group_ids = [aws_security_group.allow_all.id]
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.id}"
 
   tags = {
     Name = "Private Windows DC"
