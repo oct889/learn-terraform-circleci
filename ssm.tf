@@ -50,3 +50,16 @@ resource "aws_iam_policy_attachment" "test_attach3" {
   roles      = [aws_iam_role.test_role.id]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMDirectoryServiceAccess"
 }
+
+# SSM Endpoint
+resource "aws_vpc_endpoint" "ssm" {
+  vpc_id            = aws_vpc.prod_vpc.id
+  service_name      = "com.amazonaws.us-west-1.ssm"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.allow_all.id,
+  ]
+
+  private_dns_enabled = true
+}

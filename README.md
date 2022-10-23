@@ -1,5 +1,5 @@
 # learn-terraform-circleci
 
-Supplemental repository for Learn content on CircleCI.
+## To Do
 
-For a full step by step guide, see the accompanying guide at [HashiCorp Learn](https://learn.hashicorp.com/terraform/development/circle).
+* SSM VPC Endpoint for private subnets (can probably skip the bullshit involving getting the DNS IP addresses via the data source once I get this working. will comment out that stuff and focus on the VPC endpoint). 

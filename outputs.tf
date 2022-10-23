@@ -13,3 +13,7 @@ output "server_private_ips" {
 output "server_public_ips" {
   value = aws_instance.private_host.public_ip
 }
+
+output "ad_dns_addresses" {
+  value = aws_directory_service_directory.terra_ad.dns_ip_addresses
+}

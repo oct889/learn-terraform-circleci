@@ -14,16 +14,25 @@ resource "aws_directory_service_directory" "terra_ad" {
   }
 }
 
-resource "aws_vpc_dhcp_options" "ad" {
-  domain_name          = "terra.com"
-  domain_name_servers  = ["AmazonProvidedDNS"]
+# # VV might all be unnecessary if I can get the VPC endpoint for the private subnets working
 
-  tags = {
-    Name = "ActiveDirectory"
-  }
-}
+# # this gets a bunch of information into TF, including directoryID, directoryName, dnsIpAddresses
+# data "aws_directory_service_directory" "my_domain_controller" {
+#   directory_id = aws_directory_service_directory.terra_ad.id
+# }
 
-resource "aws_vpc_dhcp_options_association" "ad" {
-  vpc_id          = aws_vpc.prod_vpc.id
-  dhcp_options_id = "${aws_vpc_dhcp_options.ad.id}"
-}
+# # not sure how useful this is, i don't want to set dhcp options
+# resource "aws_vpc_dhcp_options" "ad" {
+#   domain_name          = "terra.com"
+#   domain_name_servers  = ["AmazonProvidedDNS"]
+
+#   tags = {
+#     Name = "ActiveDirectory"
+#   }
+# }
+
+# # not sure how useful this is
+# resource "aws_vpc_dhcp_options_association" "ad" {
+#   vpc_id          = aws_vpc.prod_vpc.id
+#   dhcp_options_id = "${aws_vpc_dhcp_options.ad.id}"
+# }
