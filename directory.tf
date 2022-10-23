@@ -16,7 +16,7 @@ resource "aws_directory_service_directory" "terra_ad" {
 
 resource "aws_vpc_dhcp_options" "ad" {
   domain_name          = "terra.com"
-  domain_name_servers  = "AmazonProvidedDNS"
+  domain_name_servers  = ["AmazonProvidedDNS"]
 
   tags {
     Name = "ActiveDirectory"
