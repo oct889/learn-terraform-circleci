@@ -1,5 +1,5 @@
 resource "aws_directory_service_directory" "terra_ad" {
-  name     = "corp.notexample.com"
+  name     = "terra.com"
   password = "SuperSecretPassw0rd"
   edition  = "Standard"
   type     = "MicrosoftAD"
@@ -12,4 +12,18 @@ resource "aws_directory_service_directory" "terra_ad" {
   tags = {
     Project = "foo"
   }
+}
+
+resource "aws_vpc_dhcp_options" "ad" {
+  domain_name          = "terra.com"
+  domain_name_servers  = "AmazonProvidedDNS"
+
+  tags {
+    Name = "ActiveDirectory"
+  }
+}
+
+resource "aws_vpc_dhcp_options_association" "ad" {
+  vpc_id          = aws_vpc.prod_vpc.id
+  dhcp_options_id = "${aws_vpc_dhcp_options.ad.id}"
 }
