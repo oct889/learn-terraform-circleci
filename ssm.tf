@@ -54,7 +54,7 @@ resource "aws_iam_policy_attachment" "test_attach3" {
 # SSM Endpoint
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id            = aws_vpc.prod_vpc.id
-  service_name      = "com.amazonaws.us-west-1.ssm"
+  service_name      = "com.amazonaws.us-east-1.ssm"
   vpc_endpoint_type = "Interface"
 
   security_group_ids = [
